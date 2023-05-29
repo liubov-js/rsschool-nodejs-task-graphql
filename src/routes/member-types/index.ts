@@ -20,8 +20,8 @@ const plugin: FastifyPluginAsyncJsonSchemaToTs = async (
       },
     },
     async function (request, reply): Promise<MemberTypeEntity> {
-      const memberType = await fastify.db.memberTypes.findOne({ key: 'id', equals: request.params.id })
-      if (memberType === null) {
+      const memberType = await fastify.db.memberTypes.findOne({ key: 'id', equals: request.params.id });
+      if (!memberType) {
         throw fastify.httpErrors.notFound();
       }
       return memberType;
